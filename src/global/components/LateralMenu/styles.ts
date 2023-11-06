@@ -26,4 +26,9 @@ export const Container = styled.div`
       color: ${theme.colors.menu_text};
     }
   }
+
+  .container-cards {
+    height: 85%;
+    overflow-y: auto;
+  }
 `;

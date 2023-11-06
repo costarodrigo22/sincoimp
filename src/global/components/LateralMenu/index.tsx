@@ -2,12 +2,16 @@ import { Container } from "./styles";
 import logo from "../../../assets/Icons/logo_white.svg";
 import { CardUser } from "../../layouts/BaseCarduser";
 
+import bell from "../../../assets/Icons/bell_icon.svg";
+
 export default function LateralMenu() {
   return (
     <Container>
-      <div>
+      <div className="container-cards">
         <CardUser.Wrapper>
-          <span>menu lateral</span>
+          <CardUser.Profile />
+          <CardUser.Infos name="Rodrigo Costa" type="Sindicalizado" />
+          <CardUser.Icon icon={bell} />
         </CardUser.Wrapper>
       </div>
 
