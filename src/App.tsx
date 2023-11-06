@@ -16,8 +16,8 @@ const queryClient = new QueryClient({
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
+      <GlobalStyles />
       <AuthProvider>
-        <GlobalStyles />
         <Toaster position="top-right" />
         <Router />
       </AuthProvider>
