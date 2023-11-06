@@ -13,6 +13,10 @@ export const colors = {
   primary: getColorsShades(blue),
   secondary: getColorsShades(gray),
 
+  menu: {
+    item: "#253046",
+  },
+
   menu_text: "#BFBFBF",
   text: "#000",
 
