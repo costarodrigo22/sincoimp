@@ -1,4 +1,5 @@
 import { createContext, useCallback, useState } from "react";
+import { localStorageKeys } from "../config/localStorageKeys";
 
 interface AuthContextProps {
   signedIn: boolean;
@@ -12,10 +13,16 @@ export default function AuthProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const [signedIn, setSignedIn] = useState(false);
+  const [signedIn, setSignedIn] = useState<boolean>(() => {
+    const storeAccessToken = localStorage.getItem(
+      localStorageKeys.ACCESS_TOKEN
+    );
+
+    return !!storeAccessToken;
+  });
 
   const signin = useCallback((accessToken: string) => {
-    localStorage.setItem("sincoimp:accessToken", accessToken);
+    localStorage.setItem(localStorageKeys.ACCESS_TOKEN, accessToken);
 
     setSignedIn(true);
   }, []);
