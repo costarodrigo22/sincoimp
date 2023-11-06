@@ -15,7 +15,7 @@ export default function AuthProvider({
   const [signedIn, setSignedIn] = useState(false);
 
   const signin = useCallback((accessToken: string) => {
-    console.log(accessToken);
+    localStorage.setItem("sincoimp:accessToken", accessToken);
 
     setSignedIn(true);
   }, []);
