@@ -2,7 +2,7 @@ import { ReactNode, createContext, useState, useCallback } from "react";
 
 interface lateralMenuContextprops {
   selected: string;
-  onTogglemenu: (label: string) => void;
+  onSelectMenuItem: (label: string) => void;
 }
 
 export const LateralMenuContext = createContext({} as lateralMenuContextprops);
@@ -20,7 +20,10 @@ export default function LateralmenuProvider({
 
   return (
     <LateralMenuContext.Provider
-      value={{ selected: menuSelected, onTogglemenu: handleSelecteMenuItem }}
+      value={{
+        selected: menuSelected,
+        onSelectMenuItem: handleSelecteMenuItem,
+      }}
     >
       {children}
     </LateralMenuContext.Provider>

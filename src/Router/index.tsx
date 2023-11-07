@@ -33,6 +33,18 @@ export default function Router() {
               path="/repasse-sindical"
               element={<h1>Repasse sindical</h1>}
             />
+            <Route
+              path="/pagamento-funcionario"
+              element={<h1>Pagamento funcionário</h1>}
+            />
+            <Route
+              path="/pagamento-empresa"
+              element={<h1>Pagamento empresa</h1>}
+            />
+            <Route
+              path="/repasse-sindical-relatorio"
+              element={<h1>Repasse sindical relatório</h1>}
+            />
           </Route>
         </Route>
       </Routes>

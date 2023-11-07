@@ -26,14 +26,14 @@ export default function MenuWrapper({
 
   const { isOpen, onToggle } = useDisclosure();
 
-  const { onTogglemenu, selected } = useLateralMenu();
+  const { onSelectMenuItem, selected } = useLateralMenu();
 
   const navigate = useNavigate();
 
   function handleNavigate(route: string, label: string) {
     navigate(route);
 
-    onTogglemenu(label);
+    onSelectMenuItem(label);
   }
 
   return (
@@ -64,7 +64,7 @@ export default function MenuWrapper({
           paddingRight: 25,
           paddingTop: 8,
           paddingBottom: 8,
-          marginTop: -8,
+          marginTop: -6,
           borderBottomRightRadius: 8,
           borderBottomLeftRadius: 8,
         }}

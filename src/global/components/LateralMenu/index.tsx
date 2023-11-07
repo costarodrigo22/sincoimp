@@ -7,6 +7,7 @@ import bellIcon from "../../../assets/Icons/bell_icon.svg";
 import registerIcon from "../../../assets/Icons/register_icon.svg";
 import arrowIcon from "../../../assets/Icons/menu_arrow.svg";
 import financialIcon from "../../../assets/Icons/financial_icon.svg";
+import reportIcon from "../../../assets/Icons/report_icon.svg";
 
 export default function LateralMenu() {
   const subMenuRegister = [
@@ -39,6 +40,21 @@ export default function LateralMenu() {
     },
   ];
 
+  const subMenuReport = [
+    {
+      name: "Pagamentos Funcionários",
+      routePush: "/pagamento-funcionario",
+    },
+    {
+      name: "Pagamentos Empresa",
+      routePush: "/pagamento-empresa",
+    },
+    {
+      name: "Repasses Sindicais",
+      routePush: "/repasse-sindical-relatorio",
+    },
+  ];
+
   return (
     <Container>
       <div className="container-cards">
@@ -57,6 +73,12 @@ export default function LateralMenu() {
         <MenuItem.Wrapper margin_top={10} list_subMenu={subMenuFinancial}>
           <MenuItem.Icon icon={financialIcon} />
           <MenuItem.Title title="Financeiro" />
+          <MenuItem.Icon icon={arrowIcon} />
+        </MenuItem.Wrapper>
+
+        <MenuItem.Wrapper margin_top={10} list_subMenu={subMenuReport}>
+          <MenuItem.Icon icon={reportIcon} />
+          <MenuItem.Title title="Relatórios" />
           <MenuItem.Icon icon={arrowIcon} />
         </MenuItem.Wrapper>
       </div>
