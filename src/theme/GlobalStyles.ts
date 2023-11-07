@@ -9,6 +9,27 @@ export const GlobalStyles = createGlobalStyle`
     font-family: 'Poppins', sans-serif;
   }
 
+     /* width */
+   ::-webkit-scrollbar {
+    width: 2px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: rgba(82, 82, 82, 0.4);
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgba(82, 82, 82, 0.85);
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+
   button{
     cursor: pointer;
   }
