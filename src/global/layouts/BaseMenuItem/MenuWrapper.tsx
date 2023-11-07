@@ -1,8 +1,9 @@
-import { ReactNode, ComponentProps, useState } from "react";
+import { ReactNode, ComponentProps } from "react";
 import { useTheme } from "../../../theme/useTheme";
 import { MenuItem } from ".";
 import { useNavigate } from "react-router-dom";
 import { useLateralMenu } from "../../../app/hooks/useLateralMenu";
+import { Collapse, useDisclosure } from "@chakra-ui/react";
 
 interface subMenuProps {
   name: string;
@@ -21,18 +22,13 @@ export default function MenuWrapper({
   list_subMenu,
   ...props
 }: menuWrapperProps) {
-  const [showSubMenu, setShowSubMenu] = useState(false);
-  // const [selectedSubMenu, setSelectedSubMenu] = useState("");
-
   const theme = useTheme();
+
+  const { isOpen, onToggle } = useDisclosure();
 
   const { onTogglemenu, selected } = useLateralMenu();
 
   const navigate = useNavigate();
-
-  function handleDropSubMenu() {
-    setShowSubMenu(!showSubMenu);
-  }
 
   function handleNavigate(route: string, label: string) {
     navigate(route);
@@ -44,7 +40,7 @@ export default function MenuWrapper({
     <div>
       <div
         {...props}
-        onClick={handleDropSubMenu}
+        onClick={onToggle}
         style={{
           background: theme.colors.menu.item,
           borderRadius: "8px",
@@ -59,29 +55,29 @@ export default function MenuWrapper({
         {children}
       </div>
 
-      {showSubMenu && (
-        <div
-          style={{
-            background: theme.colors.menu.item,
-            paddingLeft: 25,
-            paddingRight: 25,
-            paddingTop: 8,
-            paddingBottom: 8,
-            marginTop: -5,
-            borderBottomRightRadius: 8,
-            borderBottomLeftRadius: 8,
-          }}
-        >
-          {list_subMenu?.map((subMenu) => (
-            <MenuItem.SubItem
-              active={selected === subMenu.name}
-              key={subMenu.name}
-              name={subMenu.name}
-              onClick={() => handleNavigate(subMenu.routePush, subMenu.name)}
-            />
-          ))}
-        </div>
-      )}
+      <Collapse
+        in={isOpen}
+        animateOpacity
+        style={{
+          background: theme.colors.menu.item,
+          paddingLeft: 25,
+          paddingRight: 25,
+          paddingTop: 8,
+          paddingBottom: 8,
+          marginTop: -8,
+          borderBottomRightRadius: 8,
+          borderBottomLeftRadius: 8,
+        }}
+      >
+        {list_subMenu?.map((subMenu) => (
+          <MenuItem.SubItem
+            active={selected === subMenu.name}
+            key={subMenu.name}
+            name={subMenu.name}
+            onClick={() => handleNavigate(subMenu.routePush, subMenu.name)}
+          />
+        ))}
+      </Collapse>
     </div>
   );
 }
