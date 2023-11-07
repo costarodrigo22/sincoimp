@@ -5,7 +5,7 @@ const theme = useTheme.getState();
 
 export const Container = styled.div`
   position: relative;
-  width: 260px;
+  width: 300px;
   height: 100vh;
   background: ${theme.colors.primary.lighter};
   padding: 20px 15px;
@@ -13,6 +13,7 @@ export const Container = styled.div`
   .section-logo {
     position: absolute;
     bottom: 30px;
+    padding-right: 10px;
 
     display: flex;
     flex-direction: column;

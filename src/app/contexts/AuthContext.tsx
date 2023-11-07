@@ -52,7 +52,7 @@ export default function AuthProvider({
     }
   }, [isError, signout]);
 
-  if (isFetching) return <LounchScreen />;
+  if (isFetching) return <LounchScreen isLoading={isFetching} />;
 
   return (
     <AuthContext.Provider

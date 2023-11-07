@@ -14,8 +14,16 @@ export default function Router() {
         {/* Private routes */}
         <Route element={<AuthGuard isPrivate />}>
           <Route element={<AppLayout />}>
-            <Route path="/" element={<h1>Dashboard</h1>} />
-            <Route path="/asso" element={<h1>Associados</h1>} />
+            <Route path="/" element={<h1>Bem-vindo</h1>} />
+            <Route
+              path="/funcionario-sindicato"
+              element={<h1>Funcionário do Sindicato</h1>}
+            />
+            <Route path="/empresa" element={<h1>Empresa</h1>} />
+            <Route
+              path="/empresa-conveniada"
+              element={<h1>Empresa Conveniada</h1>}
+            />
           </Route>
         </Route>
       </Routes>

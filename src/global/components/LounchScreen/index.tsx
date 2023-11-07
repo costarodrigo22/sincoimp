@@ -1,10 +1,16 @@
 import { HashLoader } from "react-spinners";
 import { Container } from "./styles";
+import { Fade } from "@chakra-ui/react";
+interface lounchScreenProps {
+  isLoading: boolean;
+}
 
-export default function LounchScreen() {
+export default function LounchScreen({ isLoading }: lounchScreenProps) {
   return (
-    <Container>
-      <HashLoader color="#fff" />
-    </Container>
+    <Fade in={isLoading}>
+      <Container>
+        <HashLoader color="#fff" />
+      </Container>
+    </Fade>
   );
 }
