@@ -45,6 +45,12 @@ export default function Router() {
               path="/repasse-sindical-relatorio"
               element={<h1>Repasse sindical relatório</h1>}
             />
+            <Route path="/cabecalho" element={<h1>Cabeçalho</h1>} />
+            <Route path="/boas-vindas" element={<h1>Boas vindas</h1>} />
+            <Route path="/beneficios" element={<h1>Benefícios</h1>} />
+            <Route path="/noticias" element={<h1>Notícias</h1>} />
+            <Route path="/vantagens" element={<h1>Vantagens</h1>} />
+            <Route path="/rodape" element={<h1>Rodapé</h1>} />
           </Route>
         </Route>
       </Routes>
