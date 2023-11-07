@@ -2,6 +2,7 @@ import { ReactNode, ComponentProps, useState } from "react";
 import { useTheme } from "../../../theme/useTheme";
 import { MenuItem } from ".";
 import { useNavigate } from "react-router-dom";
+import { useLateralMenu } from "../../../app/hooks/useLateralMenu";
 
 interface subMenuProps {
   name: string;
@@ -21,9 +22,11 @@ export default function MenuWrapper({
   ...props
 }: menuWrapperProps) {
   const [showSubMenu, setShowSubMenu] = useState(false);
-  const [selectedSubMenu, setSelectedSubMenu] = useState("");
+  // const [selectedSubMenu, setSelectedSubMenu] = useState("");
 
   const theme = useTheme();
+
+  const { onTogglemenu, selected } = useLateralMenu();
 
   const navigate = useNavigate();
 
@@ -34,7 +37,7 @@ export default function MenuWrapper({
   function handleNavigate(route: string, label: string) {
     navigate(route);
 
-    setSelectedSubMenu(label);
+    onTogglemenu(label);
   }
 
   return (
@@ -71,7 +74,7 @@ export default function MenuWrapper({
         >
           {list_subMenu?.map((subMenu) => (
             <MenuItem.SubItem
-              active={selectedSubMenu === subMenu.name}
+              active={selected === subMenu.name}
               key={subMenu.name}
               name={subMenu.name}
               onClick={() => handleNavigate(subMenu.routePush, subMenu.name)}

@@ -6,6 +6,7 @@ import { MenuItem } from "../../layouts/BaseMenuItem";
 import bellIcon from "../../../assets/Icons/bell_icon.svg";
 import registerIcon from "../../../assets/Icons/register_icon.svg";
 import arrowIcon from "../../../assets/Icons/menu_arrow.svg";
+import financialIcon from "../../../assets/Icons/financial_icon.svg";
 
 export default function LateralMenu() {
   const subMenuRegister = [
@@ -20,6 +21,21 @@ export default function LateralMenu() {
     {
       name: "Empresa Conveniada",
       routePush: "/empresa-conveniada",
+    },
+  ];
+
+  const subMenuFinancial = [
+    {
+      name: "Receita Funcionário",
+      routePush: "/receita-funcionario",
+    },
+    {
+      name: "Receita Empresa",
+      routePush: "/receita-empresa",
+    },
+    {
+      name: "Repasse Sindical",
+      routePush: "/repasse-sindical",
     },
   ];
 
@@ -38,8 +54,8 @@ export default function LateralMenu() {
           <MenuItem.Icon icon={arrowIcon} />
         </MenuItem.Wrapper>
 
-        <MenuItem.Wrapper margin_top={10}>
-          <MenuItem.Icon icon={registerIcon} />
+        <MenuItem.Wrapper margin_top={10} list_subMenu={subMenuFinancial}>
+          <MenuItem.Icon icon={financialIcon} />
           <MenuItem.Title title="Financeiro" />
           <MenuItem.Icon icon={arrowIcon} />
         </MenuItem.Wrapper>

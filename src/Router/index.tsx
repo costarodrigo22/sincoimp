@@ -24,6 +24,15 @@ export default function Router() {
               path="/empresa-conveniada"
               element={<h1>Empresa Conveniada</h1>}
             />
+            <Route
+              path="/receita-funcionario"
+              element={<h1>Receita Funcionário</h1>}
+            />
+            <Route path="/receita-empresa" element={<h1>Receita empresa</h1>} />
+            <Route
+              path="/repasse-sindical"
+              element={<h1>Repasse sindical</h1>}
+            />
           </Route>
         </Route>
       </Routes>
