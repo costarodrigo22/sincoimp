@@ -2,6 +2,7 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { AuthGuard } from "./AuthGuard";
 import { Login } from "../Views/pages/Login";
 import { AppLayout } from "./Layouts/AppLayout";
+import Header from "../Views/pages/Header";
 
 export default function Router() {
   return (
@@ -45,7 +46,7 @@ export default function Router() {
               path="/repasse-sindical-relatorio"
               element={<h1>Repasse sindical relatório</h1>}
             />
-            <Route path="/cabecalho" element={<h1>Cabeçalho</h1>} />
+            <Route path="/cabecalho" element={<Header />} />
             <Route path="/boas-vindas" element={<h1>Boas vindas</h1>} />
             <Route path="/beneficios" element={<h1>Benefícios</h1>} />
             <Route path="/noticias" element={<h1>Notícias</h1>} />
