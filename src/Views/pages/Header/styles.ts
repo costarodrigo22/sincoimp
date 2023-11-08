@@ -23,6 +23,14 @@ export const Card = styled.div`
 
     display: flex;
   }
+
+  .footer {
+    padding: 0px 0px 20px 30px;
+    font-size: 11px;
+
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 export const CardImageSelected = styled.div`
@@ -71,5 +79,9 @@ export const CardImageChoose = styled.div`
 
   label {
     cursor: pointer;
+  }
+
+  label:hover {
+    text-decoration: underline;
   }
 `;
