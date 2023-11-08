@@ -1,10 +1,11 @@
-import { Container, Card, CardImageSelected, CardImageChoose } from "./styles";
+import { Container, Card, CardImageSelected } from "./styles";
 
 import exclamationIcon from "../../../assets/Icons/exclamation_icon.svg";
 import libIcon from "../../../assets/Icons/lib_icon.svg";
 import trashIcon from "../../../assets/Icons/trash_icon.svg";
 import Loader from "../../../global/components/Loader";
 import useHeaderController from "./useHeaderController";
+import { CardAdd } from "../../../global/layouts/BaseCardAdd";
 
 export default function Header() {
   const { register, handleDeleteImage } = useHeaderController();
@@ -37,14 +38,10 @@ export default function Header() {
           </div>
 
           <div style={{ width: "100%", position: "relative" }}>
-            <CardImageChoose>
-              <img src={libIcon} />
-              <label>
-                <span style={{ fontSize: 11 }}>+ Adicionar imagem</span>
-
-                <input type="file" accept="image/*" {...register("image")} />
-              </label>
-            </CardImageChoose>
+            <CardAdd.Wrapper style={{ marginTop: 22, height: 150 }}>
+              <CardAdd.Icon icon={libIcon} />
+              <CardAdd.Label text="+ Adicionar imagem" {...register("image")} />
+            </CardAdd.Wrapper>
           </div>
         </div>
 

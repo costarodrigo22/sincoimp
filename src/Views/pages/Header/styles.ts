@@ -65,27 +65,3 @@ export const CardImageSelected = styled.div`
     }
   }
 `;
-
-export const CardImageChoose = styled.div`
-  border-radius: 5px;
-  border: 1px dashed #000;
-  margin-top: 22px;
-  height: 150px;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  input {
-    display: none;
-  }
-
-  label {
-    cursor: pointer;
-  }
-
-  label:hover {
-    text-decoration: underline;
-  }
-`;
