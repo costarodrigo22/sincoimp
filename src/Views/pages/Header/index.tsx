@@ -1,9 +1,19 @@
-import { Container } from "./styles";
+import { Container, Card } from "./styles";
+
+import exclamationIcon from "../../../assets/Icons/exclamation_icon.svg";
 
 export default function Header() {
   return (
     <Container>
-      <span>add header</span>
+      <Card>
+        <div className="head">
+          <span>Logotipo</span>
+        </div>
+
+        <div className="main">
+          <span>add header</span>
+        </div>
+      </Card>
     </Container>
   );
 }

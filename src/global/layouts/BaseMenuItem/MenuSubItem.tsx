@@ -19,6 +19,7 @@ export default function MenuSubItem({ name, active, ...props }: subMenuProps) {
         paddingBottom: 5,
         fontSize: 12,
         color: theme.colors.menu_text,
+        cursor: "pointer",
       }}
     >
       <div
@@ -27,8 +28,8 @@ export default function MenuSubItem({ name, active, ...props }: subMenuProps) {
           paddingBottom: 5,
           paddingLeft: 8,
           paddingRight: 0,
-          marginLeft: active ? "-2px" : "0px",
-          borderLeft: active ? "3px solid #0066FF" : "none",
+          marginLeft: active ? "-3px" : "0px",
+          borderLeft: active ? "4px solid #0066FF" : "none",
         }}
       >
         <span>{name}</span>

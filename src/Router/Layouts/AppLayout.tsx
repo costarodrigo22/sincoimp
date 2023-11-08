@@ -1,7 +1,10 @@
 import { Outlet, useLocation } from "react-router-dom";
 import LateralMenu from "../../global/components/LateralMenu";
+import { useTheme } from "../../theme/useTheme";
 
 export function AppLayout() {
+  const theme = useTheme();
+
   const location = useLocation();
 
   const locationPreparation = location.pathname.split("/");
@@ -20,7 +23,13 @@ export function AppLayout() {
     >
       <LateralMenu />
 
-      <div style={{ width: "100%", overflowY: "auto" }}>
+      <div
+        style={{
+          width: "100%",
+          overflowY: "auto",
+          background: theme.colors.context.wrapper,
+        }}
+      >
         <div style={{ width: "100%", height: 20, padding: "20px 30px" }}>
           <span>{locationCaptalized}</span>
         </div>

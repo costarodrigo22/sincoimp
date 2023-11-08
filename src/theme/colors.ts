@@ -25,6 +25,7 @@ export const colors = {
     error: "",
     warning: "",
     info: "",
+    wrapper: "#F0F4F7",
   },
 
   login: {
