@@ -9,7 +9,7 @@ const schema = z.object({
 
 type FormSchema = z.infer<typeof schema>;
 
-export function useHeaderController() {
+export default function useHeaderController() {
   const {
     register,
     handleSubmit: hookFormHandleSubmit,
@@ -25,11 +25,15 @@ export function useHeaderController() {
     console.log("Dados: ", image);
   });
 
+  function handleDeleteImage() {
+    console.log("clicou em deletar");
+  }
+
   useEffect(() => {
     handleSubmit();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [chosenImage]);
 
-  return { register, handleSubmit, errors };
+  return { register, handleDeleteImage, errors };
 }

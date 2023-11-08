@@ -59,6 +59,10 @@ export const CardImageSelected = styled.div`
 
     display: flex;
     align-items: center;
+
+    img {
+      cursor: pointer;
+    }
   }
 `;
 

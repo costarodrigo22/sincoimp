@@ -3,10 +3,11 @@ import { Container, Card, CardImageSelected, CardImageChoose } from "./styles";
 import exclamationIcon from "../../../assets/Icons/exclamation_icon.svg";
 import libIcon from "../../../assets/Icons/lib_icon.svg";
 import trashIcon from "../../../assets/Icons/trash_icon.svg";
-import { useHeaderController } from "./useHeaderController";
+import Loader from "../../../global/components/Loader";
+import useHeaderController from "./useHeaderController";
 
 export default function Header() {
-  const { register } = useHeaderController();
+  const { register, handleDeleteImage } = useHeaderController();
 
   return (
     <Container>
@@ -23,17 +24,19 @@ export default function Header() {
               </span>
             </div>
             <CardImageSelected>
+              <Loader color="#0066FF" isLoading={false} />
+
               <input type="checkbox" checked={true} readOnly />
 
               <span style={{ fontSize: 10 }}>Nenhuma imagem</span>
 
               <div className="actions">
-                <img src={trashIcon} />
+                <img src={trashIcon} onClick={handleDeleteImage} />
               </div>
             </CardImageSelected>
           </div>
 
-          <div style={{ width: "100%" }}>
+          <div style={{ width: "100%", position: "relative" }}>
             <CardImageChoose>
               <img src={libIcon} />
               <label>
