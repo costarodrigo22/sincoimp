@@ -4,19 +4,20 @@ interface CardWrapperProps extends ComponentProps<"div"> {
   children: ReactNode;
 }
 
-export default function CardWrapper({ children, ...props }: CardWrapperProps) {
+export default function CardActions({ children, ...props }: CardWrapperProps) {
   return (
     <div
       {...props}
       style={{
-        width: 250,
-        borderRadius: 5,
-        border: "1px dashed #000",
+        position: "absolute",
+        right: 0,
+        height: "100%",
+        background: "rgba(232, 232, 232, 0.5)",
+        padding: 10,
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        ...props.style,
       }}
     >
       {children}

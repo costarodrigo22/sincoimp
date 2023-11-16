@@ -10,12 +10,13 @@ export default function CardWrapper({ children, ...props }: CardWrapperProps) {
       {...props}
       style={{
         width: 250,
+        position: "relative",
         borderRadius: 5,
-        border: "1px dashed #000",
         display: "flex",
-        flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
+        height: 150,
+        border: "1px solid #999",
         ...props.style,
       }}
     >

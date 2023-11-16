@@ -1,10 +1,7 @@
 import styled from "styled-components";
 
-export const Container = styled.div``;
-
-export const Card = styled.div`
+export const Container = styled.div`
   width: 100%;
-  max-width: 600px;
   background: #fff;
   border-radius: 10px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
@@ -17,11 +14,11 @@ export const Card = styled.div`
   }
 
   .main {
-    width: 100%;
     padding: 20px 30px;
-    gap: 20px;
+    overflow-x: auto;
 
     display: flex;
+    align-items: center;
   }
 
   .footer {

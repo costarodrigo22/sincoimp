@@ -1,14 +1,15 @@
-import { Container, Card, CardImageSelected } from "./styles";
+import { Container, Card } from "./styles";
 
-import exclamationIcon from "../../../assets/Icons/exclamation_icon.svg";
+import newImageIcon from "../../../assets/Icons/new_image_icon.svg";
 import libIcon from "../../../assets/Icons/lib_icon.svg";
 import trashIcon from "../../../assets/Icons/trash_icon.svg";
 import Loader from "../../../global/components/Loader";
 import useHeaderController from "./useHeaderController";
 import { CardAdd } from "../../../global/layouts/BaseCardAdd";
+import { CardImage } from "../../../global/layouts/BaseCardImage";
 
 export default function Header() {
-  const { register, handleDeleteImage } = useHeaderController();
+  const { register, imageUrl, handleDeleteImage } = useHeaderController();
 
   return (
     <Container>
@@ -17,32 +18,39 @@ export default function Header() {
           <span>Logotipo</span>
         </div>
         <div className="main">
-          <div style={{ width: "100%" }}>
-            <div style={{ display: "flex" }}>
-              <img src={exclamationIcon} />
-              <span style={{ fontSize: 10, color: "#06F", marginLeft: 5 }}>
-                Imagem atual
-              </span>
-            </div>
-            <CardImageSelected>
-              <Loader color="#0066FF" isLoading={false} />
+          {!!imageUrl && (
+            <>
+              <CardImage.Wrapper
+                style={{
+                  backgroundImage: imageUrl ? `url(${imageUrl})` : "none",
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  backgroundRepeat: "no-repeat",
+                }}
+              >
+                <Loader isLoading={false} color="#0066ff" />
+                <CardImage.Actions>
+                  <CardImage.iconLabel
+                    style={{ marginBottom: 10 }}
+                    icon={newImageIcon}
+                    {...register("image")}
+                  />
+                  <img
+                    src={trashIcon}
+                    onClick={handleDeleteImage}
+                    style={{ cursor: "pointer" }}
+                  />
+                </CardImage.Actions>
+              </CardImage.Wrapper>
+            </>
+          )}
 
-              <input type="checkbox" checked={true} readOnly />
-
-              <span style={{ fontSize: 10 }}>Nenhuma imagem</span>
-
-              <div className="actions">
-                <img src={trashIcon} onClick={handleDeleteImage} />
-              </div>
-            </CardImageSelected>
-          </div>
-
-          <div style={{ width: "100%", position: "relative" }}>
+          {!imageUrl && (
             <CardAdd.Wrapper style={{ marginTop: 22, height: 150 }}>
               <CardAdd.Icon icon={libIcon} />
               <CardAdd.Label text="+ Adicionar imagem" {...register("image")} />
             </CardAdd.Wrapper>
-          </div>
+          )}
         </div>
 
         <div className="footer">

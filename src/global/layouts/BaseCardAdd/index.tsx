@@ -1,6 +1,6 @@
 import CardIcon from "./CardIcon";
+import { CardLabel } from "./CardLabel";
 import CardWrapper from "./CardWrapper";
-import { CardLabel } from "./Cardlabel";
 
 export const CardAdd = {
   Wrapper: CardWrapper,
