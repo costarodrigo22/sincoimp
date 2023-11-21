@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -11,8 +11,6 @@ type FormSchema = z.infer<typeof schema>;
 
 export default function useHeaderController() {
   const [imageUrl, setImageUrl] = useState<string | null>(null);
-
-  const newImageRef = useRef<HTMLInputElement>(null);
 
   const {
     register,
@@ -27,18 +25,16 @@ export default function useHeaderController() {
   const chosenImage = watch("image");
 
   const handleSubmit = hookFormHandleSubmit(async ({ image }) => {
-    console.log("Imagem: ", image);
-
     if (image) {
       const reader = new FileReader();
+
+      reader.readAsDataURL(image);
 
       reader.onload = (event) => {
         const newImageUrl = event.target?.result as string;
 
         setImageUrl(newImageUrl);
       };
-
-      reader.readAsDataURL(image);
     }
   });
 
@@ -58,7 +54,6 @@ export default function useHeaderController() {
     chosenImage,
     errors,
     imageUrl,
-    newImageRef,
     register,
     handleSubmit,
     handleDeleteImage,

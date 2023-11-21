@@ -9,7 +9,7 @@ import { CardAdd } from "../../../global/layouts/BaseCardAdd";
 import { CardImage } from "../../../global/layouts/BaseCardImage";
 
 export default function Header() {
-  const { register, imageUrl, handleDeleteImage } = useHeaderController();
+  const { imageUrl, register, handleDeleteImage } = useHeaderController();
 
   return (
     <Container>
