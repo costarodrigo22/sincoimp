@@ -1,10 +1,23 @@
 import { Button } from "../../../global/layouts/Button";
 import Modal from "../../../global/layouts/Modal";
-import { Card } from "./styles";
 import useBenefitsController from "./useBenefitsController";
+import { Card } from "./styles";
+import * as RadixIcons from "@radix-ui/react-icons";
+import { useState } from "react";
+
+type RadixIconNames = keyof typeof RadixIcons;
 
 export default function Benefits() {
   const { modalVisible, setModalVisible } = useBenefitsController();
+
+  const [iconSelected, setIconSelected] = useState<RadixIconNames | null>(null);
+
+  const radixIcons = Object.entries(RadixIcons);
+
+  const selectOptions = radixIcons.map(([iconName, icon]) => ({
+    label: iconName,
+    icon,
+  }));
 
   return (
     <>
@@ -13,7 +26,19 @@ export default function Benefits() {
         isOpen={modalVisible}
         onClose={() => setModalVisible(false)}
       >
-        Conteúdo
+        <select
+          value={iconSelected || ""}
+          onChange={(e) => setIconSelected(e.target.value as RadixIconNames)}
+        >
+          <option value="">Selecione um ícone</option>
+          {selectOptions.map((option, index) => (
+            <option key={index} value={option.label}>
+              {option.label}
+            </option>
+          ))}
+        </select>
+
+        <IconDisplay selectedIcon={iconSelected} />
       </Modal>
 
       <Card>
@@ -48,3 +73,17 @@ export default function Benefits() {
     </>
   );
 }
+
+const IconDisplay: React.FC<{ selectedIcon: RadixIconNames | null }> = ({
+  selectedIcon,
+}) => {
+  const IconComponent = selectedIcon ? RadixIcons[selectedIcon] : null;
+
+  return (
+    <div>
+      {IconComponent && (
+        <IconComponent width={24} height={24} color="#B50000" />
+      )}
+    </div>
+  );
+};
