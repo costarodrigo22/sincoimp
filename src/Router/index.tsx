@@ -4,6 +4,7 @@ import { Login } from "../Views/pages/Login";
 import { AppLayout } from "./Layouts/AppLayout";
 import Header from "../Views/pages/Header";
 import Welcome from "../Views/pages/Welcome";
+import Benefits from "../Views/pages/Benefits";
 
 export default function Router() {
   return (
@@ -49,7 +50,7 @@ export default function Router() {
             />
             <Route path="/cabecalho" element={<Header />} />
             <Route path="/boas-vindas" element={<Welcome />} />
-            <Route path="/beneficios" element={<h1>Benefícios</h1>} />
+            <Route path="/beneficios" element={<Benefits />} />
             <Route path="/noticias" element={<h1>Notícias</h1>} />
             <Route path="/vantagens" element={<h1>Vantagens</h1>} />
             <Route path="/rodape" element={<h1>Rodapé</h1>} />
