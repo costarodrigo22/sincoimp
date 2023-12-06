@@ -1,9 +1,9 @@
-import { ReactNode } from "react";
+import { ReactNode, ComponentProps } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { ModalContainer } from "./styles";
 import closeIcon from "../../../assets/Icons/closeIcon.svg";
 
-interface ModalProps {
+interface ModalProps extends ComponentProps<"div"> {
   isOpen: boolean;
   title: string;
   onClose?: () => void;
@@ -15,13 +15,14 @@ export default function Modal({
   title,
   children,
   onClose,
+  ...props
 }: ModalProps) {
   return (
     <Dialog.Root open={isOpen} onOpenChange={onClose}>
       <Dialog.Portal>
         <ModalContainer>
           <Dialog.Overlay className="DialogOverlay" />
-          <Dialog.Content className="DialogContent">
+          <Dialog.Content className="DialogContent" style={{ ...props.style }}>
             <header
               style={{
                 display: "flex",
