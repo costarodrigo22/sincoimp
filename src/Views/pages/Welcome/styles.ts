@@ -29,3 +29,12 @@ export const Container = styled.div`
     flex-direction: column;
   }
 `;
+
+export const ContainerSpinner = styled.div`
+  padding: 20px 30px;
+  overflow-x: auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
