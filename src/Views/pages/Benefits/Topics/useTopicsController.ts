@@ -5,8 +5,8 @@ import { z } from "zod";
 const schema = z.object({
   topics: z.array(
     z.object({
-      icon: z.string(),
-      title: z.string(),
+      icon: z.string().min(1, "Selecione um ícone"),
+      title: z.string().min(1, "Informe o título"),
     })
   ),
 });
@@ -22,16 +22,17 @@ export default function useTopicsController() {
     formState: { errors },
   } = useForm<FormSchema>({
     resolver: zodResolver(schema),
+    defaultValues: { topics: [{ icon: "", title: "" }] },
   });
 
-  const {} = useFieldArray({
+  const { fields, append, remove } = useFieldArray({
     control,
     name: "topics",
   });
 
-  const handleSubmit = hookFormHandleSubmit(async ({ image }) => {
-    console.log(image);
+  const handleSubmit = hookFormHandleSubmit(async ({ topics }) => {
+    console.log(topics);
   });
 
-  return { errors, register, handleSubmit, reset };
+  return { fields, errors, register, handleSubmit, reset, append, remove };
 }

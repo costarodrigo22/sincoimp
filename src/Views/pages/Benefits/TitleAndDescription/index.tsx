@@ -1,7 +1,10 @@
 import { TextInput } from "../../../../global/components/TextInput";
 import { Button } from "../../../../global/layouts/Button";
+import useTitleAndDescriptionController from "./useTitleAndDescriptionController";
 
 export default function TitleAndDescription() {
+  const { register, handleSubmit, errors } = useTitleAndDescriptionController();
+
   return (
     <div
       style={{
@@ -15,8 +18,18 @@ export default function TitleAndDescription() {
         Dê um título e uma descrição a sua publicação!
       </span>
 
-      <TextInput label="título" placeholder="+ Adicionar um título" />
-      <TextInput label="descrição" placeholder="+ Adicionar uma descrição" />
+      <TextInput
+        label="título"
+        placeholder="+ Adicionar um título"
+        error={errors.title?.message}
+        {...register("title")}
+      />
+      <TextInput
+        label="descrição"
+        placeholder="+ Adicionar uma descrição"
+        {...register("description")}
+        error={errors.description?.message}
+      />
 
       <div style={{ display: "flex", justifyContent: "flex-end" }}>
         <Button.Wrapper
@@ -32,7 +45,10 @@ export default function TitleAndDescription() {
           }}
           disabled={false}
         >
-          <Button.Label style={{ fontSize: 12, color: "#fff" }}>
+          <Button.Label
+            style={{ fontSize: 12, color: "#fff" }}
+            onClick={handleSubmit}
+          >
             Salvar
           </Button.Label>
         </Button.Wrapper>

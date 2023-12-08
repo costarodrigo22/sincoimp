@@ -32,7 +32,7 @@ export default function Benefits() {
   return (
     <>
       <Modal
-        style={{ height: 450 }}
+        style={{ height: 480 }}
         title="Criar Publicação de Benefícios"
         isOpen={modalVisible}
         onClose={() => setModalVisible(false)}
