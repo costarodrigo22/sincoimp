@@ -69,13 +69,6 @@ export default function Topics() {
               {...register(`topics.${index}.icon`)}
             />
 
-            {/* <TextInput
-              label="título"
-              placeholder="+ Adicionar um título"
-              error={errors.topics?.[index]?.icon?.message}
-              {...register(`topics.${index}.icon`)}
-            /> */}
-
             <TextInput
               label="título"
               placeholder="+ Adicionar um título"
