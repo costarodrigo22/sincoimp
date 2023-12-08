@@ -5,5 +5,5 @@ import CardWrapper from "./CardWrapper";
 export const CardImage = {
   Wrapper: CardWrapper,
   Actions: CardActions,
-  iconLabel: CardLabelImage,
+  IconLabel: CardLabelImage,
 };
