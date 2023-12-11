@@ -1,5 +1,9 @@
-import { titleAndDescription } from "./titleAndDescription";
+import {
+  titleAndDescription,
+  listTitleAndDescription,
+} from "./titleAndDescription";
 
 export const benefitsService = {
   titleAndDescription,
+  listTitleAndDescription,
 };

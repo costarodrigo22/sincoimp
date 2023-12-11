@@ -2,12 +2,15 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { benefitsService } from "../../../../app/services/Benefits";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 
 interface dataProps {
-  description: string;
-  title: string;
+  body: {
+    descricao: string;
+    titulo: string;
+  };
+  id: string;
 }
 
 const schema = z.object({
@@ -28,6 +31,11 @@ export default function useTitleAndDescriptionController() {
     defaultValues: { description: "", title: "" },
   });
 
+  const { data: listTitleAndDescription } = useQuery({
+    queryKey: ["list-title-description"],
+    queryFn: () => benefitsService.listTitleAndDescription(),
+  });
+
   const { isPending, mutateAsync } = useMutation({
     mutationKey: ["add-title-description"],
     mutationFn: async (data: dataProps) => {
@@ -36,13 +44,16 @@ export default function useTitleAndDescriptionController() {
   });
 
   const handleSubmit = hookFormHandleSubmit(async ({ title, description }) => {
-    const body = {
-      description,
-      title,
+    const params = {
+      body: {
+        descricao: description,
+        titulo: title,
+      },
+      id: listTitleAndDescription.data[0].id,
     };
 
     try {
-      await mutateAsync(body);
+      await mutateAsync(params);
 
       toast.success("Título e descrição adicionados com sucesso");
     } catch (error) {
