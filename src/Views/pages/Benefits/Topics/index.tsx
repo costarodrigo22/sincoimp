@@ -4,9 +4,10 @@ import trashIcon from "../../../../assets/Icons/trash_icon.svg";
 import { TextInput } from "../../../../global/components/TextInput";
 import useTopicsController from "./useTopicsController";
 import { InconInput } from "../../../../global/components/IconInput";
+import { PulseLoader } from "react-spinners";
 
 export default function Topics() {
-  const { fields, errors, append, remove, register, handleSubmit } =
+  const { fields, errors, isPending, append, remove, register, handleSubmit } =
     useTopicsController();
 
   return (
@@ -98,9 +99,20 @@ export default function Topics() {
           disabled={false}
           onClick={handleSubmit}
         >
-          <Button.Label style={{ fontSize: 12, color: "#fff" }}>
-            Salvar
-          </Button.Label>
+          {isPending && (
+            <PulseLoader
+              color="#fff"
+              margin={5}
+              size={5}
+              style={{ marginTop: 0 }}
+            />
+          )}
+
+          {!isPending && (
+            <Button.Label style={{ fontSize: 12, color: "#fff" }}>
+              Salvar
+            </Button.Label>
+          )}
         </Button.Wrapper>
       </div>
     </div>

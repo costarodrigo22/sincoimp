@@ -20,7 +20,7 @@ export default function Image() {
       }}
     >
       <span style={{ fontSize: 13, marginTop: 15 }}>
-        Dê um título e uma descrição a sua publicação!
+        Adicione uma imagem a sua publicação!
       </span>
 
       <div style={{ display: "flex", alignItems: "center" }}>

@@ -25,6 +25,7 @@ export default function useImageController() {
   const chosenImage = watch("image");
 
   const handleSubmit = hookFormHandleSubmit(async ({ image }) => {
+    console.log(image);
     if (image) {
       const reader = new FileReader();
 

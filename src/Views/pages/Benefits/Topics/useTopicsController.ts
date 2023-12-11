@@ -1,6 +1,16 @@
 import { useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { benefitsService } from "../../../../app/services/Benefits";
+import toast from "react-hot-toast";
+
+interface dataProps {
+  data: {
+    titulo: string;
+    icone: string;
+  }[];
+}
 
 const schema = z.object({
   topics: z.array(
@@ -30,9 +40,42 @@ export default function useTopicsController() {
     name: "topics",
   });
 
-  const handleSubmit = hookFormHandleSubmit(async ({ topics }) => {
-    console.log(topics);
+  const { data: listTitleAndDescription } = useQuery({
+    queryKey: ["list-title-description"],
+    queryFn: () => benefitsService.listTitleAndDescription(),
   });
 
-  return { fields, errors, register, handleSubmit, reset, append, remove };
+  const { isPending, mutateAsync } = useMutation({
+    mutationKey: ["add-topics"],
+    mutationFn: async (data: dataProps) => benefitsService.topics(data),
+  });
+
+  const handleSubmit = hookFormHandleSubmit(async ({ topics }) => {
+    const arrayMapped = topics.map((item) => {
+      return {
+        titulo: item.title,
+        icone: item.icon,
+        primeiro_informativo_id: listTitleAndDescription.data[0].id,
+      };
+    });
+
+    try {
+      await mutateAsync({ data: arrayMapped });
+
+      toast.success("Tópicos adicionados com sucesso");
+    } catch (error) {
+      toast.error("Algo deu errado ao adicionar tópicos");
+    }
+  });
+
+  return {
+    fields,
+    errors,
+    isPending,
+    register,
+    handleSubmit,
+    reset,
+    append,
+    remove,
+  };
 }

@@ -57,7 +57,7 @@ export default function useTitleAndDescriptionController() {
 
       toast.success("Título e descrição adicionados com sucesso");
     } catch (error) {
-      toast.success("Erro ao adicionar título e descrição");
+      toast.error("Erro ao adicionar título e descrição");
     }
   });
 
