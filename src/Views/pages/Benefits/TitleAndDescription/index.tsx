@@ -1,9 +1,11 @@
+import { PulseLoader } from "react-spinners";
 import { TextInput } from "../../../../global/components/TextInput";
 import { Button } from "../../../../global/layouts/Button";
 import useTitleAndDescriptionController from "./useTitleAndDescriptionController";
 
 export default function TitleAndDescription() {
-  const { register, handleSubmit, errors } = useTitleAndDescriptionController();
+  const { register, handleSubmit, errors, isPending } =
+    useTitleAndDescriptionController();
 
   return (
     <div
@@ -44,13 +46,22 @@ export default function TitleAndDescription() {
             marginTop: 40,
           }}
           disabled={false}
+          onClick={handleSubmit}
         >
-          <Button.Label
-            style={{ fontSize: 12, color: "#fff" }}
-            onClick={handleSubmit}
-          >
-            Salvar
-          </Button.Label>
+          {isPending && (
+            <PulseLoader
+              color="#fff"
+              margin={5}
+              size={5}
+              style={{ marginTop: 0 }}
+            />
+          )}
+
+          {!isPending && (
+            <Button.Label style={{ fontSize: 12, color: "#fff" }}>
+              Salvar
+            </Button.Label>
+          )}
         </Button.Wrapper>
       </div>
     </div>

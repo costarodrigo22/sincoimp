@@ -36,7 +36,7 @@ export default function Image() {
             >
               <Loader isLoading={false} color="#0066ff" />
               <CardImage.Actions>
-                <CardImage.iconLabel
+                <CardImage.IconLabel
                   style={{ marginBottom: 10 }}
                   icon={newImageIcon}
                   {...register("image")}
