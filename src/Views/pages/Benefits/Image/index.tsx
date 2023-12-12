@@ -5,10 +5,11 @@ import useImageController from "./useImageController";
 import newImageIcon from "../../../../assets/Icons/new_image_icon.svg";
 import libIcon from "../../../../assets/Icons/lib_icon.svg";
 import trashIcon from "../../../../assets/Icons/trash_icon.svg";
-import { Button } from "../../../../global/layouts/Button";
+// import { Button } from "../../../../global/layouts/Button";
+// import { PulseLoader } from "react-spinners";
 
 export default function Image() {
-  const { register, handleDeleteImage, handleSubmit, imageUrl } =
+  const { register, handleDeleteImage, imageUrl, isPending } =
     useImageController();
 
   return (
@@ -19,7 +20,7 @@ export default function Image() {
         width: "100%",
       }}
     >
-      <span style={{ fontSize: 13, marginTop: 15 }}>
+      <span style={{ fontSize: 13, marginTop: 15, marginBottom: 15 }}>
         Adicione uma imagem a sua publicação!
       </span>
 
@@ -34,7 +35,7 @@ export default function Image() {
                 backgroundRepeat: "no-repeat",
               }}
             >
-              <Loader isLoading={false} color="#0066ff" />
+              <Loader isLoading={isPending} color="#0066ff" />
               <CardImage.Actions>
                 <CardImage.IconLabel
                   style={{ marginBottom: 10 }}
@@ -91,7 +92,7 @@ export default function Image() {
         </div>
       </div>
 
-      <div
+      {/* <div
         style={{ marginTop: 30, display: "flex", justifyContent: "flex-end" }}
       >
         <Button.Wrapper
@@ -106,11 +107,22 @@ export default function Image() {
           }}
           onClick={handleSubmit}
         >
-          <Button.Label style={{ fontSize: 12, color: "#fff" }}>
-            Salvar
-          </Button.Label>
+          {isPending && (
+            <PulseLoader
+              color="#fff"
+              margin={5}
+              size={5}
+              style={{ marginTop: 0 }}
+            />
+          )}
+
+          {!isPending && (
+            <Button.Label style={{ fontSize: 12, color: "#fff" }}>
+              Salvar
+            </Button.Label>
+          )}
         </Button.Wrapper>
-      </div>
+      </div> */}
     </div>
   );
 }

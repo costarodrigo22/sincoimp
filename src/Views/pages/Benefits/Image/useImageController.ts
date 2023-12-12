@@ -2,6 +2,14 @@ import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { benefitsService } from "../../../../app/services/Benefits";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import toast from "react-hot-toast";
+
+interface dataProps {
+  id: string;
+  image: File | null;
+}
 
 const schema = z.object({
   image: z.instanceof(FileList).transform((listFile) => listFile.item(0)),
@@ -22,10 +30,19 @@ export default function useImageController() {
     resolver: zodResolver(schema),
   });
 
+  const { data: listTitleAndDescription } = useQuery({
+    queryKey: ["list-title-description"],
+    queryFn: () => benefitsService.listTitleAndDescription(),
+  });
+
+  const { isPending, mutateAsync } = useMutation({
+    mutationKey: ["add-image"],
+    mutationFn: async (data: dataProps) => benefitsService.image(data),
+  });
+
   const chosenImage = watch("image");
 
   const handleSubmit = hookFormHandleSubmit(async ({ image }) => {
-    console.log(image);
     if (image) {
       const reader = new FileReader();
 
@@ -36,6 +53,17 @@ export default function useImageController() {
 
         setImageUrl(newImageUrl);
       };
+
+      try {
+        await mutateAsync({
+          id: listTitleAndDescription.data[0].id,
+          image: image,
+        });
+
+        toast.success("Imagem adicionada com sucesso!");
+      } catch (error) {
+        toast.error("Algo deu errado ao adicionar a imagem!");
+      }
     }
   });
 
@@ -51,5 +79,12 @@ export default function useImageController() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [chosenImage]);
 
-  return { imageUrl, errors, register, handleSubmit, handleDeleteImage };
+  return {
+    imageUrl,
+    isPending,
+    errors,
+    register,
+    handleSubmit,
+    handleDeleteImage,
+  };
 }

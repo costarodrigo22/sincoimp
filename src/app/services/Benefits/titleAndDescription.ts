@@ -9,8 +9,6 @@ interface TitleAndDescriptionProps {
 }
 
 export async function titleAndDescription(params: TitleAndDescriptionProps) {
-  console.log(params);
-
   const { data } = await httpClient.put(
     `/api/v1/primeiro_informativo/update/${params.id}`,
     params.body
