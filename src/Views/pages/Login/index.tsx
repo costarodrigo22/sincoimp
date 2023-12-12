@@ -44,6 +44,7 @@ export function Login() {
           <div className="input-action">
             <InputLogin.Wrapper
               placeholder="Usuário"
+              onKeyDown={(event) => event.key === "Enter" && handleSubmit()}
               error={errors.user?.message}
               {...register("user")}
             >
@@ -55,6 +56,7 @@ export function Login() {
               placeholder="Senha"
               margin_top={20}
               error={errors.password?.message}
+              onKeyDown={(event) => event.key === "Enter" && handleSubmit()}
               type="password"
               {...register("password")}
             >
