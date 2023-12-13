@@ -84,7 +84,7 @@ export default function Topics() {
         ))}
       </div>
 
-      <div style={{ display: "flex", justifyContent: "flex-end" }}>
+      {/* <div style={{ display: "flex", justifyContent: "flex-end" }}>
         <Button.Wrapper
           style={{
             width: 125,
@@ -114,7 +114,7 @@ export default function Topics() {
             </Button.Label>
           )}
         </Button.Wrapper>
-      </div>
+      </div> */}
     </div>
   );
 }
