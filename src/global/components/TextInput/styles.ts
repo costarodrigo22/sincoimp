@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div<{ error?: string }>`
-  border: ${({ error }) => (error ? "2px solid red" : "1px solid #000")};
+  border: ${({ error }) => (error ? "1px solid red" : "1px solid #000")};
   padding: 15px;
   border-radius: 5px;
   font-size: 13px;
