@@ -12,11 +12,11 @@ import { Spinner } from "@chakra-ui/react";
 export default function Welcome() {
   const {
     images,
+    isLoadingGetImages,
+    isLoadingUpdateOrDeleteImage,
     getImages,
     updateImage,
     deleteImage,
-    isLoadingGetImages,
-    isLoadingUpdateOrDeleteImage,
   } = useWelcome();
 
   useEffect(() => {

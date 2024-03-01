@@ -13,13 +13,18 @@ export const ModalContainer = styled.div`
     border-radius: 10px;
     outline: none;
     padding: 24px;
-    max-width: 1100px;
+    max-width: 400px;
     background: #fff;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     animation: contentShow 650ms cubic-bezier(0.16, 1, 0.3, 1);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
   }
 
   @keyframes overlayShow {

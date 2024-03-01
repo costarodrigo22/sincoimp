@@ -1,7 +1,14 @@
-import { ReactNode, createContext, useState, useCallback } from "react";
+import {
+  ReactNode,
+  createContext,
+  useState,
+  useCallback,
+  useEffect,
+} from "react";
+import { localStorageKeys } from "../config/localStorageKeys";
 
 interface lateralMenuContextprops {
-  selected: string;
+  selected: string | null;
   onSelectMenuItem: (label: string) => void;
 }
 
@@ -12,11 +19,22 @@ export default function LateralmenuProvider({
 }: {
   children: ReactNode;
 }) {
-  const [menuSelected, setMenuSelected] = useState("");
+  const [menuSelected, setMenuSelected] = useState(() => {
+    const itemMenuSelected = localStorage.getItem(
+      localStorageKeys.LATERAL_MENU
+    );
+
+    return itemMenuSelected;
+  });
 
   const handleSelecteMenuItem = useCallback((label: string) => {
     setMenuSelected(label);
   }, []);
+
+  useEffect(() => {
+    if (menuSelected)
+      localStorage.setItem(localStorageKeys.LATERAL_MENU, menuSelected);
+  }, [menuSelected]);
 
   return (
     <LateralMenuContext.Provider

@@ -1,6 +1,8 @@
 import {
   titleAndDescription,
   listTitleAndDescription,
+  storeInfosBenefits,
+  deletePublication,
 } from "./titleAndDescription";
 
 import { topics } from "./topics";
@@ -11,4 +13,6 @@ export const benefitsService = {
   listTitleAndDescription,
   topics,
   image,
+  storeInfosBenefits,
+  deletePublication,
 };
