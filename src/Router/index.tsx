@@ -8,6 +8,7 @@ import Benefits from "../Views/pages/Benefits";
 import BenefitsProvider from "../app/contexts/BenefitsContext";
 import Footer from "../Views/pages/Footer";
 import Advantage from "../Views/pages/Advantage";
+import AdvantagesProvider from "../app/contexts/AdvantagesContext";
 
 export default function Router() {
   return (
@@ -62,7 +63,14 @@ export default function Router() {
               }
             />
             <Route path="/noticias" element={<h1>Notícias</h1>} />
-            <Route path="/vantagens" element={<Advantage />} />
+            <Route
+              path="/vantagens"
+              element={
+                <AdvantagesProvider>
+                  <Advantage />
+                </AdvantagesProvider>
+              }
+            />
             <Route path="/rodape" element={<Footer />} />
           </Route>
         </Route>
