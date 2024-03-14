@@ -1,9 +1,15 @@
+import { useAdvantages } from "../../../app/hooks/useAdvantages";
 import { Button } from "../../../global/layouts/Button";
+import AdvantagesModal from "./components/AdvantagesModal";
 import { Container } from "./styles";
 
 export default function Advantage() {
+  const { openAdvantagesModal } = useAdvantages();
+
   return (
     <Container>
+      <AdvantagesModal />
+
       <div className="head">
         <div style={{ marginTop: 5 }}>⭐</div>
         <div className="titles">
@@ -24,6 +30,7 @@ export default function Advantage() {
               alignItems: "center",
               justifyContent: "center",
             }}
+            onClick={openAdvantagesModal}
           >
             <Button.Label style={{ fontSize: 12, color: "#fff" }}>
               + Adicionar
