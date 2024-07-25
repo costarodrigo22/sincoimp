@@ -15,11 +15,7 @@ import libIcon from "../../../assets/Icons/lib_icon.svg";
 export default function Footer() {
   const [tabActive, setTabActive] = useState(0);
 
-  const stepsHeader = [
-    { id: 0, title: "Informações Gerais" },
-    { id: 1, title: "Institucional" },
-    { id: 2, title: "Serviços" },
-  ];
+  const stepsHeader = [{ id: 0, title: "Informações Gerais" }];
 
   const handleToggleStep = useCallback((stepIndex: number) => {
     setTabActive(stepIndex);
@@ -149,14 +145,6 @@ export default function Footer() {
                 />
               </div>
             </div>
-          </SwiperSlide>
-
-          <SwiperSlide>
-            <span>step2</span>
-          </SwiperSlide>
-
-          <SwiperSlide>
-            <span>step3</span>
           </SwiperSlide>
         </Swiper>
       </div>

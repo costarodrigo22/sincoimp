@@ -170,7 +170,6 @@ export function useBenefitsModalController() {
   );
 
   function handleImageChange(images: FileList | string) {
-    console.log(images);
     if (images) {
       try {
         const reader = new FileReader();
