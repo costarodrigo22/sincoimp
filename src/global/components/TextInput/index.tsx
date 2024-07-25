@@ -12,7 +12,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
       <div style={{ display: "flex", flexDirection: "column", ...props.style }}>
         <Container error={error}>
           <div style={{ width: "85%" }}>
-            <span>
+            <span style={{ color: error && "red" }}>
               <strong>Aa</strong> - {label}
             </span>
 
@@ -23,7 +23,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
             />
           </div>
           <div className="edit-container">
-            <span>Editar</span>
+            <span style={{ color: error && "red" }}>Editar</span>
           </div>
         </Container>
         {/* {error && <span style={{ color: "red", fontSize: 11 }}>{error}</span>} */}

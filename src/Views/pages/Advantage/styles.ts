@@ -66,3 +66,45 @@ export const ContainerSpinner = styled.div`
   align-items: center;
   justify-content: center;
 `;
+
+export const ContainerContainsInfos = styled.div`
+  padding: 20px 30px;
+
+  .title {
+    color: #343434;
+    font-weight: 500;
+    font-size: 15px;
+  }
+`;
+
+export const ContainerInfos = styled.div`
+  width: 100%;
+  background: #f8fbff;
+  border-radius: 10px;
+  margin-top: 20px;
+  padding: 30px;
+
+  .infos-data {
+    width: 100%;
+    display: flex;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .title-and-description {
+    display: flex;
+    flex-direction: column;
+    margin-left: 30px;
+
+    span {
+      font-weight: 500;
+      font-size: 30px;
+    }
+
+    small {
+      font-size: 15px;
+    }
+  }
+`;

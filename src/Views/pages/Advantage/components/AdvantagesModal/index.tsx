@@ -1,38 +1,83 @@
-import { Swiper, SwiperSlide } from "swiper/react";
-import HeaderSteps from "../../../../../global/components/HeaderSteps";
-import { TextInput } from "../../../../../global/components/TextInput";
-import { Button } from "../../../../../global/layouts/Button";
-import StepsNavigation from "../../../../../global/components/StepsNavigation";
+// import { Swiper, SwiperSlide } from "swiper/react";
+// import HeaderSteps from "../../../../../global/components/HeaderSteps";
+// import { TextInput } from "../../../../../global/components/TextInput";
+// import { Button } from "../../../../../global/layouts/Button";
+// import StepsNavigation from "../../../../../global/components/StepsNavigation";
 
-import revisionIcon from "../../../../../assets/Icons/revision_icon.svg";
-import eyeIcon from "../../../../../assets/Icons/eye_icon.svg";
+// import revisionIcon from "../../../../../assets/Icons/revision_icon.svg";
+// import eyeIcon from "../../../../../assets/Icons/eye_icon.svg";
 import Modal from "../../../../../global/layouts/Modal";
-import { useAdvantagesModalController } from "./useAdvantagesModalController";
-import { useAdvantagesController } from "../../useAdvantagesController";
+// import { useAdvantagesModalController } from "./useAdvantagesModalController";
+// import { useAdvantagesController } from "../../useAdvantagesController";
 import { useAdvantages } from "../../../../../app/hooks/useAdvantages";
-import AdvantageInput from "../../../../../global/components/AdvantageInput";
+import { Steps } from "../Steps";
+import { TitleAndDescription } from "../Steps/TitleAndDescription";
+import { Topics } from "../Steps/Topics";
+import { Review } from "../Steps/Review";
+// import AdvantageInput from "../../../../../global/components/AdvantageInput";
 
-export default function AdvantagesModal() {
-  const { swiperIsBeginning, swiperIsEnd, handleOpenModalView } =
-    useAdvantagesModalController();
+interface defaultValuesProps {
+  dataDefaultEdit?: {
+    id?: string;
+    titleValueDefault?: string;
+    descriptionValueDefault?: string;
+    topics?: {
+      id: string;
+      icon: string;
+      title: string;
+      description: string;
+    }[];
+  };
 
-  const { stepsHeader } = useAdvantagesController();
+  onUpdated?: () => void;
+}
+
+export default function AdvantagesModal({
+  dataDefaultEdit,
+  onUpdated,
+}: defaultValuesProps) {
+  // const { swiperIsBeginning, swiperIsEnd, handleOpenModalView } =
+  //   useAdvantagesModalController();
+
+  // const { stepsHeader } = useAdvantagesController();
 
   const {
     isAdvantagesModalOpen,
-    tabActive,
+    // tabActive,
     closeAdvantagesModal,
     handleToggleStep,
   } = useAdvantages();
 
   return (
     <Modal
-      style={{ height: 480, width: 650 }}
+      style={{ height: 480, width: 740 }}
       title="Criar Publicação de Vantagens"
       isOpen={isAdvantagesModalOpen}
       onClose={() => (closeAdvantagesModal(), handleToggleStep(0))}
     >
-      <Swiper
+      <Steps
+        initialStep={0}
+        steps={[
+          {
+            label: "Título e descrição",
+            content: (
+              <TitleAndDescription
+                idValueDefault={dataDefaultEdit?.id}
+                titleValueDefault={dataDefaultEdit?.titleValueDefault}
+                descriptionValueDefault={
+                  dataDefaultEdit?.descriptionValueDefault
+                }
+              />
+            ),
+          },
+          {
+            label: "Tópicos",
+            content: <Topics listTopics={dataDefaultEdit?.topics} />,
+          },
+          { label: "Revisão", content: <Review update={onUpdated} /> },
+        ]}
+      />
+      {/* <Swiper
         slidesPerView={1}
         spaceBetween={50}
         // onSlideChange={(swiper) => {
@@ -128,7 +173,7 @@ export default function AdvantagesModal() {
         </SwiperSlide>
 
         <StepsNavigation isBeginning={swiperIsBeginning} isEnd={swiperIsEnd} />
-      </Swiper>
+      </Swiper> */}
     </Modal>
   );
 }

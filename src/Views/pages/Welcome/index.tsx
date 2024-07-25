@@ -36,9 +36,9 @@ export default function Welcome() {
       ) : (
         <div className="main">
           <div style={{ display: "flex", gap: 20 }}>
-            {images?.map((image) => (
-              <Fragment key={image.id}>
-                {image.base64 ? (
+            {images?.length > 0 &&
+              images?.map((image) => (
+                <Fragment key={image.id}>
                   <CardImage.Wrapper
                     style={{
                       backgroundImage: image?.base64
@@ -74,34 +74,30 @@ export default function Welcome() {
                       />
                     </CardImage.Actions>
                   </CardImage.Wrapper>
+                  )
+                </Fragment>
+              ))}
+
+            {images?.length <= 0 && (
+              <CardAdd.Wrapper style={{ height: 150, width: 250 }}>
+                {isLoadingUpdateOrDeleteImage ? (
+                  <Loader isLoading={false} color="#0066ff" />
                 ) : (
-                  <CardAdd.Wrapper
-                    style={{ height: 150, width: 250 }}
-                    key={image.id}
-                  >
-                    {isLoadingUpdateOrDeleteImage ? (
-                      <Loader
-                        isLoading={isLoadingUpdateOrDeleteImage === image.id}
-                        color="#0066ff"
-                      />
-                    ) : (
-                      <>
-                        <CardAdd.Icon icon={libIcon} />
-                        <CardAdd.Label
-                          text="+ Adicionar imagem"
-                          onChange={({ target }) =>
-                            updateImage(
-                              image.id,
-                              target.files ?? ([] as unknown as FileList)
-                            )
-                          }
-                        />
-                      </>
-                    )}
-                  </CardAdd.Wrapper>
+                  <>
+                    <CardAdd.Icon icon={libIcon} />
+                    <CardAdd.Label
+                      text="+ Adicionar imagem"
+                      onChange={({ target }) =>
+                        updateImage(
+                          "",
+                          target.files ?? ([] as unknown as FileList)
+                        )
+                      }
+                    />
+                  </>
                 )}
-              </Fragment>
-            ))}
+              </CardAdd.Wrapper>
+            )}
           </div>
         </div>
       )}

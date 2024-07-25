@@ -2,7 +2,7 @@ import { ComponentProps, ReactNode } from "react";
 import { Container } from "./styles";
 
 interface ButtonWrapperProps extends ComponentProps<"button"> {
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 export default function ButtonWrapper({
