@@ -1,15 +1,17 @@
 import { Container, Card } from "./styles";
 
-import newImageIcon from "../../../assets/Icons/new_image_icon.svg";
-import libIcon from "../../../assets/Icons/lib_icon.svg";
-import trashIcon from "../../../assets/Icons/trash_icon.svg";
-import Loader from "../../../global/components/Loader";
+// import newImageIcon from "../../../assets/Icons/new_image_icon.svg";
+// import libIcon from "../../../assets/Icons/lib_icon.svg";
+// import trashIcon from "../../../assets/Icons/trash_icon.svg";
+// import Loader from "../../../global/components/Loader";
 import useHeaderController from "./useHeaderController";
-import { CardAdd } from "../../../global/layouts/BaseCardAdd";
-import { CardImage } from "../../../global/layouts/BaseCardImage";
+// import { CardAdd } from "../../../global/layouts/BaseCardAdd";
+// import { CardImage } from "../../../global/layouts/BaseCardImage";
+import InputImage from "../../../global/components/InputImage";
 
 export default function Header() {
-  const { imageUrl, register, handleDeleteImage } = useHeaderController();
+  const { image, companyId, loadingImage, handlegetImage } =
+    useHeaderController();
 
   return (
     <Container>
@@ -18,7 +20,13 @@ export default function Header() {
           <span>Logotipo</span>
         </div>
         <div className="main">
-          {!!imageUrl && (
+          <InputImage
+            initialImage={image}
+            loadingBase64={loadingImage}
+            companyId={companyId}
+            onImageUpdate={handlegetImage}
+          />
+          {/* {!!imageUrl && (
             <>
               <CardImage.Wrapper
                 style={{
@@ -50,7 +58,7 @@ export default function Header() {
               <CardAdd.Icon icon={libIcon} />
               <CardAdd.Label text="+ Adicionar imagem" {...register("image")} />
             </CardAdd.Wrapper>
-          )}
+          )} */}
         </div>
 
         <div className="footer">
